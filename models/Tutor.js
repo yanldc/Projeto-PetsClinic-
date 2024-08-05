@@ -23,3 +23,5 @@ const Tutor = db.define('Tutor', {
         allowNull: false
     },
 })
+
+module.exports = Tutor
