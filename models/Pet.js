@@ -24,3 +24,5 @@ const Pet = db.define('Pet', {
         allowNull: true
     },
 })
+
+module.exports = Pet
