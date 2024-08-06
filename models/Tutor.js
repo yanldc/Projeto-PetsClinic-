@@ -14,11 +14,11 @@ const Tutor = db.define('Tutor', {
         type: DataTypes.STRING,
         allowNull: true
     },
-    dateOfBirth:{
+    date_of_birth:{
         type: DataTypes.STRING,
         allowNull: false
     },
-    zipCode:{
+    zip_code:{
         type: DataTypes.STRING,
         allowNull: false
     },

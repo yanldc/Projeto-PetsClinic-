@@ -19,10 +19,13 @@ const Pet = db.define('Pet', {
         type: DataTypes.FLOAT,
         allowNull: false
     },
-    dateOfBirth:{
+    date_of_birth:{
         type: DataTypes.STRING,
         allowNull: true
     },
 })
+
+Tutor.hasMany(Pet)
+Pet.belongsTo(Tutor)
 
 module.exports = Pet
