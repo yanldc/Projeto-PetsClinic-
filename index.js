@@ -8,6 +8,8 @@ const app = express()
 
 app.use(express.json())
 
+
+/* TUTORES */
 app.post('/tutors', async(req, res) => {
     const name = req.body.name
     const phone = req.body.phone
@@ -52,6 +54,44 @@ app.put('/tutors/:id', async (req, res) => {
     await Tutor.update(userData, {where: {id: id}})
     res.json(Tutor)
 })
+
+
+/* PETS */
+app.post('/pets', async(req, res) => {
+    const TutorId = req.body.idTutor
+    const name = req.body.name
+    const species = req.body.species
+    const carry = req.body.carry
+    const weight = req.body.zip_code
+    const date_of_birth = req.body.date_of_birth
+
+    const pet = {
+        TutorId,
+        name,
+        species,
+        carry,
+        weight,
+        date_of_birth
+    }
+
+    await Pet.create(pet)
+    res.json(Pet)
+})
+
+app.get('/pets', async(req, res) => {
+    const name = req.query.name
+    const species = req.query.species
+    const carry = req.query.carry
+    const weight = req.query.weight
+    const date_of_birth = req.query.date_of_birth
+
+    const pet = await Pet.findAll( {attributes: ['id','name','species','carry','date_of_birth','weight','TutorId']})
+
+    res.json(pet)
+})
+
+
+
 
 con.sync()
    .then(() => {app.listen(3000)} )
