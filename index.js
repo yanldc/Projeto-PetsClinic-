@@ -15,6 +15,7 @@ app.post('/tutors', async(req, res) => {
     const date_of_birth = req.body.date_of_birth
     const zip_code = req.body.zip_code
 
+    await Tutor.create({name, phone, email, date_of_birth, zip_code })
 
     res.json(Tutor)
 })
