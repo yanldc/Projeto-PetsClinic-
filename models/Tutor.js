@@ -12,7 +12,7 @@ const Tutor = db.define('Tutor', {
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false
     },
     date_of_birth:{
         type: DataTypes.STRING,
