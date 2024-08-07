@@ -10,7 +10,6 @@ app.use(express.json());
 
 /* TUTORES */
 
-//100% (eu acho)
 app.get("/tutors", async (req, res) => {
   const id = req.query.id;
   const phone = req.query.phone;
@@ -42,7 +41,7 @@ app.get("/tutors", async (req, res) => {
   res.json(result);
 });
 
-//100% (eu acho)
+
 app.post("/tutors", async (req, res) => {
   const name = req.body.name;
   const phone = req.body.phone;
@@ -55,7 +54,7 @@ app.post("/tutors", async (req, res) => {
   res.json(Tutor);
 });
 
-//100% (eu acho)
+
 app.put("/tutor/:id", async (req, res) => {
   const id = req.params.id;
   const name = req.body.name;
@@ -77,7 +76,7 @@ app.put("/tutor/:id", async (req, res) => {
   res.json(Tutor);
 });
 
-//100% (eu acho)
+
 app.delete("/tutor/:id", async (req, res) => {
   const id = req.params.id;
 
@@ -110,7 +109,7 @@ app.get("/pets", async (req, res) => {
   res.json(pet);
 });
 
-// funcional (se por um ID inexistente o trem quebra)
+
 app.post("/pet/:tutorId", async (req, res) => {
   const tutorId = req.params.tutorId;
   const name = req.body.name;
@@ -131,7 +130,7 @@ app.post("/pet/:tutorId", async (req, res) => {
   res.json(Pet);
 });
 
-//100% (eu acho)
+
 app.put("/pet/:petId/tutor/:tutorId", async (req, res) => {
   const tutorId = req.params.tutorId;
   const petId = req.params.petId;
@@ -153,7 +152,7 @@ app.put("/pet/:petId/tutor/:tutorId", async (req, res) => {
   res.json(Pet);
 });
 
-//100% (eu acho)
+
 app.delete("/pet/:petId/tutor/:tutorId", async (req, res) => {
   const tutorId = req.params.tutorId;
   const petId = req.params.petId;
