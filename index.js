@@ -11,9 +11,9 @@ app.use(express.json())
 
             /* TUTORES */
 
-//chamar os pets junto
+//100% (eu acho)
 app.get('/tutors', async(req, res) => {  
-    const name = req.query.name
+    const id = req.query.id
     const phone = req.query.phone
     const email = req.query.email
     const date_of_birth = req.query.date_of_birth
@@ -21,7 +21,14 @@ app.get('/tutors', async(req, res) => {
 
     const tutors = await Tutor.findAll( {attributes: ['id','name','phone','email','date_of_birth','zip_code']})
 
-    res.json(tutors)
+    const pets = await Pet.findAll( {attributes: ['id','name','species','carry','date_of_birth','weight','TutorId']})
+
+    const result = tutors.map(tutor => ({
+        tutor,
+        pets: pets.filter(pet => pet.TutorId === tutor.id)
+    }));
+
+    res.json(result);
 })
 
 //100% (eu acho)
