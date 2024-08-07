@@ -45,7 +45,7 @@ app.post('/tutors', async(req, res) => {
 })
 
 //100% (eu acho)
-app.put('/tutors/:id', async (req, res) => { 
+app.put('/tutor/:id', async (req, res) => { 
     const id = req.params.id
     const name = req.body.name
     const phone = req.body.phone
