@@ -21,7 +21,7 @@ const Pet = db.define('Pet', {
     },
     date_of_birth:{
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false
     },
 })
 
