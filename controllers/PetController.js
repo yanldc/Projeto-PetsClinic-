@@ -40,10 +40,10 @@ module.exports = class PetController {
       date_of_birth,
     };
 
-    const pet = await Pet.findOne({where: { id: petId, TutorId: tutorId }})
-    if(!pet){
-      res.json('Pet not found')
-    }else {
+    const pet = await Pet.findOne({ where: { id: petId, TutorId: tutorId } });
+    if (!pet) {
+      res.json("Pet not found");
+    } else {
       await Pet.update(userData, { where: { id: petId, TutorId: tutorId } });
       res.json(Pet);
     }
@@ -53,13 +53,12 @@ module.exports = class PetController {
     const tutorId = req.params.tutorId;
     const petId = req.params.petId;
 
-    
-    const pet = await Pet.findOne({where: { id: petId, TutorId: tutorId }})
-    if(!pet){
-      res.json('Pet not found')
-    }else {
+    const pet = await Pet.findOne({ where: { id: petId, TutorId: tutorId } });
+    if (!pet) {
+      res.json("Pet not found");
+    } else {
       await Pet.destroy({ where: { id: petId, TutorId: tutorId } });
-  
+
       res.json("status code 204");
     }
   }
