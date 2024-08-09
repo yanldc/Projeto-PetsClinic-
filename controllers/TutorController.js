@@ -62,16 +62,27 @@ module.exports = class TutorController {
       zip_code,
     };
 
-    await Tutor.update(userData, { where: { id: id } });
+    const tutor = await Tutor.findOne({where: {id}})
+    if(!tutor){
+      res.json('Tutor not found')
+    }else {
+      await Tutor.update(userData, { where: { id: id } });
     res.json(Tutor);
+    }    
   }
 
   static async deleteTutor(req, res) {
     const id = req.params.id;
 
-    await Pet.destroy({ where: { TutorId: id } });
-    await Tutor.destroy({ where: { id: id } });
+    const tutor = await Tutor.findOne({where: {id}})
+    if(!tutor){
+      res.json('Tutor not found')
+    }else {
+      await Pet.destroy({ where: { TutorId: id } });
+      await Tutor.destroy({ where: { id: id } });
+  
+      res.json("status code 204");
+    }
 
-    res.json("status code 204");
   }
 };
