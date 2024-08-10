@@ -1,27 +1,28 @@
-# Projeto PetsClinic 🐶🐱
- O projeto tem como objetivo a criação de um seistema para clinicas veterinarias, aonde teremos o cadastro de tutores e seus respectivos pets.
+# PetsClinic Project 🐶🐱
+ The project aims to create a system for veterinary clinics, where we will have the registration of pet owners and their respective pets.
 
-# Pré-requisitos 📋 
- Node.js versão 20.16.0;
- npm versão 10.8.1;
- MySQL Workbanch 8.0;
+# Prerequisites  📋 
+ Node.js version 20.16.0;
+ npm version 10.8.1;
+ MySQL Workbench 8.0;
 
-# Construído com 🛠️ 
- Node.Js
- express   
+# Built with 🛠️ 
+ Node.js
+ express
  nodemon
- sequelize 
- mysql2    
+ sequelize
+ mysql2   
+ swagger-ui-express
 
-# Instalação 🔧 
- 1- Faça o clone do repositório e no terminal navegue até a pasta;
- 2- Em MySQL criar um banco chamado 'petsclinic' com usuario padrao(root) e senha padrao('') ou alterar os dados de connection.js na pasta db a sua prefência;
- 3- Instale as dependências do projeto com npm install;
- 4- Rode o servidor de desenvolvimento com npm start.
+# Installation 🔧 
+ 1- Clone the repository and navigate to the folder in the terminal;
+ 2- In MySQL, create a database named 'petsclinic' with the default user (root) and default password (''), or modify the connection details in connection.js in the db folder to your preference;
+ 3- Install the project dependencies with npm install;
+ 4- Start the development server with npm start.
 
-# Estrutura de pastas 📦
+# Folder Structure 📦
 ├── PROJETO-PETSCLINIC-
-|   ├── node_modules (não será importado, rodar npm install)
+|   ├── node_modules (will not be imported, run npm install)
 |   ├── db
 |       ├── connection.js
 |   ├── models
@@ -31,6 +32,7 @@
 |   ├── package-lock.json
 |   ├── package.json
 |   ├── README.md
+|   ├── swagger.json
 
- # Autores ✒️
+ # Authors ✒️
  yanldc

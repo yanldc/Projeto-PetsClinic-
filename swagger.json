@@ -1,0 +1,424 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "PetsClinic Project",
+    "description": "System for veterinary clinics",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/tutors": {
+      "get": {
+        "tags": ["Tutors"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "phone",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "date_of_birth",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "zip_code",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "description": "All tutors with they pets",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "tutor": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "phone": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "date_of_birth": {
+                          "type": "string",
+                          "format": "date"
+                        },
+                        "zip_code": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "pets": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "integer"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "species": {
+                            "type": "string"
+                          },
+                          "carry": {
+                            "type": "string"
+                          },
+                          "date_of_birth": {
+                            "type": "string",
+                            "format": "date"
+                          },
+                          "weight": {
+                            "type": "number"
+                          },
+                          "TutorId": {
+                            "type": "integer"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Tutors"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "zip_code": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "phone",
+                  "email",
+                  "date_of_birth",
+                  "zip_code"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tutors/{id}": {
+      "put": {
+        "tags": ["Tutors"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Update tutor"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "zip_code": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "phone",
+                  "email",
+                  "date_of_birth",
+                  "zip_code"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "description": "Tutor updated",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "phone": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "zip_code": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Tutors"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "tutor to delete"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "deleted successfully"
+          }
+        }
+      }
+    },
+    "/tutors/{tutorId}/pets": {
+      "post": {
+        "tags": ["Pets"],
+        "parameters": [
+          {
+            "name": "tutorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "species": {
+                    "type": "string"
+                  },
+                  "carry": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "type": "number"
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                },
+                "required": [
+                  "name",
+                  "species",
+                  "carry",
+                  "weight",
+                  "date_of_birth"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tutors/{tutorId}/pets/{petId}": {
+      "put": {
+        "tags": ["Pets"],
+        "parameters": [
+          {
+            "name": "tutorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "species": {
+                    "type": "string"
+                  },
+                  "carry": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "type": "number"
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                },
+                "required": [
+                  "name",
+                  "species",
+                  "carry",
+                  "weight",
+                  "date_of_birth"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "description": "Pet updated successfully",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "species": {
+                    "type": "string"
+                  },
+                  "carry": {
+                    "type": "string"
+                  },
+                  "weight": {
+                    "type": "number"
+                  },
+                  "date_of_birth": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "TutorId": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Pets"],
+        "parameters": [
+          {
+            "name": "tutorId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
