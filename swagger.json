@@ -48,41 +48,16 @@
           }
         ],
         "responses": {
-          "description": "All tutors with they pets",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "tutor": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "type": "integer"
-                        },
-                        "name": {
-                          "type": "string"
-                        },
-                        "phone": {
-                          "type": "string"
-                        },
-                        "email": {
-                          "type": "string"
-                        },
-                        "date_of_birth": {
-                          "type": "string",
-                          "format": "date"
-                        },
-                        "zip_code": {
-                          "type": "string"
-                        }
-                      }
-                    },
-                    "pets": {
-                      "type": "array",
-                      "items": {
+          "200": {
+            "description": "All tutors with they pets",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "tutor": {
                         "type": "object",
                         "properties": {
                           "id": {
@@ -91,21 +66,48 @@
                           "name": {
                             "type": "string"
                           },
-                          "species": {
+                          "phone": {
                             "type": "string"
                           },
-                          "carry": {
+                          "email": {
                             "type": "string"
                           },
                           "date_of_birth": {
                             "type": "string",
                             "format": "date"
                           },
-                          "weight": {
-                            "type": "number"
-                          },
-                          "TutorId": {
-                            "type": "integer"
+                          "zip_code": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "pets": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "species": {
+                              "type": "string"
+                            },
+                            "carry": {
+                              "type": "string"
+                            },
+                            "date_of_birth": {
+                              "type": "string",
+                              "format": "date"
+                            },
+                            "weight": {
+                              "type": "number"
+                            },
+                            "TutorId": {
+                              "type": "integer"
+                            }
                           }
                         }
                       }
@@ -114,6 +116,9 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad request"
           }
         }
       },
@@ -156,7 +161,7 @@
         }
       }
     },
-    "/tutors/{id}": {
+    "/tutor/{id}": {
       "put": {
         "tags": ["Tutors"],
         "parameters": [
@@ -206,35 +211,40 @@
           }
         },
         "responses": {
-          "description": "Tutor updated",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "phone": {
-                    "type": "string"
-                  },
-                  "email": {
-                    "type": "string"
-                  },
-                  "date_of_birth": {
-                    "type": "string",
-                    "format": "date"
-                  },
-                  "zip_code": {
-                    "type": "string"
+          "200": {
+            "description": "Tutor updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "date_of_birth": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "zip_code": {
+                      "type": "string"
+                    }
                   }
                 }
               }
             }
           }
+        },
+        "400": {
+          "description": "Bad request"
         }
       },
       "delete": {
@@ -253,11 +263,14 @@
         "responses": {
           "204": {
             "description": "deleted successfully"
+          },
+          "400": {
+            "description": "Bad request"
           }
         }
       }
     },
-    "/tutors/{tutorId}/pets": {
+    "/pet/{tutorId}": {
       "post": {
         "tags": ["Pets"],
         "parameters": [
@@ -265,6 +278,7 @@
             "name": "tutorId",
             "in": "path",
             "required": true,
+            "description": "Tutor ID",
             "schema": {
               "type": "integer"
             }
@@ -287,65 +301,7 @@
                     "type": "string"
                   },
                   "weight": {
-                    "type": "number"
-                  },
-                  "date_of_birth": {
-                    "type": "string",
-                    "format": "date"
-                  }
-                },
-                "required": [
-                  "name",
-                  "species",
-                  "carry",
-                  "weight",
-                  "date_of_birth"
-                ]
-              }
-            }
-          }
-        }
-      }
-    },
-    "/tutors/{tutorId}/pets/{petId}": {
-      "put": {
-        "tags": ["Pets"],
-        "parameters": [
-          {
-            "name": "tutorId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "petId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
                     "type": "string"
-                  },
-                  "species": {
-                    "type": "string"
-                  },
-                  "carry": {
-                    "type": "string"
-                  },
-                  "weight": {
-                    "type": "number"
                   },
                   "date_of_birth": {
                     "type": "string",
@@ -364,15 +320,76 @@
           }
         },
         "responses": {
-          "description": "Pet updated successfully",
+          "201": {
+            "description": "Create",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "species": {
+                      "type": "string"
+                    },
+                    "carry": {
+                      "type": "string"
+                    },
+                    "weight": {
+                      "type": "string"
+                    },
+                    "date_of_birth": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "TutorId": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }
+    },
+    "/pet/{petId}/tutor/{tutorId}": {
+      "put": {
+        "tags": ["Pets"],
+        "parameters": [
+          {
+            "name": "tutorId",
+            "in": "path",
+            "required": true,
+            "description": "Tutor ID",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "petId",
+            "in": "path",
+            "required": true,
+            "description": "Pet ID",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "type": "object",
                 "properties": {
-                  "id": {
-                    "type": "integer"
-                  },
                   "name": {
                     "type": "string"
                   },
@@ -383,18 +400,61 @@
                     "type": "string"
                   },
                   "weight": {
-                    "type": "number"
+                    "type": "string"
                   },
                   "date_of_birth": {
                     "type": "string",
                     "format": "date"
-                  },
-                  "TutorId": {
-                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "name",
+                  "species",
+                  "carry",
+                  "weight",
+                  "date_of_birth"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful update",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "species": {
+                      "type": "string"
+                    },
+                    "carry": {
+                      "type": "string"
+                    },
+                    "weight": {
+                      "type": "string"
+                    },
+                    "date_of_birth": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "TutorId": {
+                      "type": "integer"
+                    }
                   }
                 }
               }
             }
+          },
+          "404": {
+            "description": "Bad request"
           }
         }
       },
@@ -405,6 +465,7 @@
             "name": "tutorId",
             "in": "path",
             "required": true,
+            "description": "Tutor ID",
             "schema": {
               "type": "integer"
             }
@@ -413,11 +474,20 @@
             "name": "petId",
             "in": "path",
             "required": true,
+            "description": "Pet ID",
             "schema": {
               "type": "integer"
             }
           }
-        ]
+        ],
+        "responses": {
+          "204": {
+            "description": "Deleted"
+          },
+          "404": {
+            "description": "Bad request"
+          }
+        }
       }
     }
   }
