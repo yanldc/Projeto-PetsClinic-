@@ -20,6 +20,9 @@
  3- Install the project dependencies with npm install;
  4- Start the development server with npm start.
 
+# documentation 📋
+http://localhost:3000/api-docs/
+
 # Folder Structure 📦
 ├── PROJETO-PETSCLINIC-
 |   ├── node_modules (will not be imported, run npm install)
