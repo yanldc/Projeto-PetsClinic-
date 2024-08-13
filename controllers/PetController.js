@@ -20,6 +20,7 @@ module.exports = class PetController {
       TutorId: tutorId,
     });
 
+    res.status(201);
     res.json(Pet);
   }
 
@@ -42,9 +43,11 @@ module.exports = class PetController {
 
     const pet = await Pet.findOne({ where: { id: petId, TutorId: tutorId } });
     if (!pet) {
+      res.status(404);
       res.json("Pet not found");
     } else {
       await Pet.update(userData, { where: { id: petId, TutorId: tutorId } });
+      res.status(202);
       res.json(Pet);
     }
   }
@@ -55,10 +58,12 @@ module.exports = class PetController {
 
     const pet = await Pet.findOne({ where: { id: petId, TutorId: tutorId } });
     if (!pet) {
+      res.status(404);
       res.json("Pet not found");
     } else {
       await Pet.destroy({ where: { id: petId, TutorId: tutorId } });
 
+      res.status(204);
       res.json("status code 204");
     }
   }
