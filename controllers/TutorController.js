@@ -30,6 +30,7 @@ module.exports = class TutorController {
       pets: pets.filter((pet) => pet.TutorId === tutor.id),
     }));
 
+    res.status(200);
     res.json(result);
   }
 
@@ -42,6 +43,7 @@ module.exports = class TutorController {
 
     await Tutor.create({ name, phone, email, date_of_birth, zip_code });
 
+    res.status(201);
     res.json(Tutor);
   }
 
@@ -64,9 +66,11 @@ module.exports = class TutorController {
 
     const tutor = await Tutor.findOne({ where: { id } });
     if (!tutor) {
+      res.status(404);
       res.json("Tutor not found");
     } else {
       await Tutor.update(userData, { where: { id: id } });
+      res.status(202);
       res.json(Tutor);
     }
   }
@@ -76,11 +80,13 @@ module.exports = class TutorController {
 
     const tutor = await Tutor.findOne({ where: { id } });
     if (!tutor) {
+      res.status(404);
       res.json("Tutor not found");
     } else {
       await Pet.destroy({ where: { TutorId: id } });
       await Tutor.destroy({ where: { id: id } });
 
+      res.status(204);
       res.json("status code 204");
     }
   }
